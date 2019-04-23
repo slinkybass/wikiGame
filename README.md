@@ -1,6 +1,6 @@
-# MarkerTabs
+# Wiki Game
 
-MarkerTabs is a intuitive and powerful HomePage for faster and easier web navigation, created by [Slinkybass](http://www.garaballu.com).
+Wiki Game is a intuitive and powerful HomePage for faster and easier web navigation, created by [Slinkybass](http://www.garaballu.com).
 
 To get started, check out the Documentation
 
@@ -12,15 +12,9 @@ To get started, check out the Documentation
 
 ## Install
 
-* [Download the latest release](https://github.com/slinkybass/MarkerTabs/archive/master.zip).
+* [Download the latest release](https://github.com/slinkybass/wikiGame/archive/master.zip).
 
-* Install dependencies with Bower: bower install
-
-* Modify the route to your API backend:
-
-```js
-# src/markertabs.js
-markertabs.constant('urlBackend', "http://localhost/MarkerTabsBackend");
+* Install dependencies with Yarn: yarn install
 ```
 
 ## Creators
@@ -33,6 +27,6 @@ markertabs.constant('urlBackend', "http://localhost/MarkerTabsBackend");
 
 ## Copyright and license
 
-Code and documentation Copyright 2016. [MarkerTabsBundle Authors](https://github.com/slinkybass/MarkerTabsBundle/graphs/contributors) and [Garaballú](http://www.garaballu.com).
+Code and documentation Copyright 2016. [WikiGame Authors](https://github.com/slinkybass/wikiGame/graphs/contributors) and [Garaballú](http://www.garaballu.com).
 
-Code released under the [MIT License](https://github.com/slinkybass/MarkerTabsBundle/blob/master/LICENSE).
+Code released under the [MIT License](https://github.com/slinkybass/wikiGame/blob/master/LICENSE).
