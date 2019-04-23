@@ -1,0 +1,19 @@
+<section class="home">
+
+    <header>
+        <ul class="bread">
+            <li ng-repeat="breadcrumb in homeCtrl.breadcrumb">
+                <span ng-bind="breadcrumb"></span>
+            </li>
+        </ul>
+        <span class="steps" ng-bind="homeCtrl.breadcrumb.length-1"></span>
+    </header>
+
+    <content id="content">
+        <div class="container">
+            <h1 id="firstHeading" class="firstHeading" ng-bind="homeCtrl.actualPage"></h1>
+            <div ng-bind-html="homeCtrl.text"></div>
+        </div>
+    </content>
+
+</section>
