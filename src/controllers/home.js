@@ -64,10 +64,20 @@ angular.module('app')
 						});
 						
                     }, 1);
+					
+					if (page == vm.article_target) {
+						ngDialog.open({
+							template: 'success',
+							className: 'ngdialog-theme-default'
+						});
+					}
                 });
             }
-
+			
+			vm.article_begin = 'Pizza';
+			vm.article_target = 'Campania';
+			
             vm.breadcrumb = [];
-            document.loadSection('Pizza');
+            document.loadSection(vm.article_begin);
         }
     ]);

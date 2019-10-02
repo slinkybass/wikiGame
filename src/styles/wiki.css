@@ -44,6 +44,18 @@ section.home header .steps {
     text-align: center;
     font-size: 35px;
 }
+section.home header .target {
+    position: fixed;
+    left: 25px;
+    top: 75px;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+section.home header .target::before {
+	content: 'Objetivo: ';
+	color: #BBB;
+}
 section.home content {
     position: absolute;
     width: 100%;
