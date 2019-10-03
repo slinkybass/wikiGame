@@ -6,5 +6,6 @@ angular.module('app', [
     'oc.lazyLoad',
     'oitozero.ngSweetAlert',
     'toaster',
-    'ngDialog'
+    'ngDialog',
+	'ui.select'
 ]);

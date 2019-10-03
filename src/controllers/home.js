@@ -25,6 +25,29 @@ angular.module('app')
 					}
 				});
 			}
+			
+            vm.searcharticles_begin = [];
+            vm.searcharticles_target = [];
+            vm.search = function (str, id) {
+                if (str.length >= 1) {
+					return wikiAPI.get({
+						format: 'json',
+						action: 'query',
+						list: 'search',
+						srsearch: str
+					}).then(function (data) {
+						var searcharticles = data.query.search.map(function(item) {
+							return item['title'];
+						});
+						if (id == 'input_begin') {
+							vm.searcharticles_begin = searcharticles;
+						} else if (id == 'input_target') {
+							vm.searcharticles_target = searcharticles;
+						}
+					});
+                }
+            }
+			
 			vm.begin = function () {
 				vm.article_begin = vm.input_begin;
 				vm.article_target = vm.input_target;

@@ -22,7 +22,14 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="input-group">
-							<input type="text" class="form-control input-lg" ng-model="homeCtrl.input_begin" placeholder="Origen" required />
+							<ui-select ng-model="homeCtrl.input_begin" ng-required="true" theme="bootstrap">
+								<ui-select-match allow-clear="true" placeholder="Origen">
+									<span ng-bind="$select.selected"></span>
+								</ui-select-match>
+								<ui-select-choices repeat="article in (homeCtrl.searcharticles_begin | filter: $select.search)" refresh="homeCtrl.search($select.search, 'input_begin')" refresh-delay="500">
+									<span ng-bind="article"></span>
+								</ui-select-choices>
+							</ui-select>
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-lg btn-default" ng-click="homeCtrl.random('input_begin')">
 									<i class="fa fa-random"></i>
@@ -32,7 +39,14 @@
 					</div>
 					<div class="col-md-6">
 						<div class="input-group">
-							<input type="text" class="form-control input-lg" ng-model="homeCtrl.input_target" placeholder="Objetivo" required />
+							<ui-select ng-model="homeCtrl.input_target" ng-required="true">
+								<ui-select-match allow-clear="true" placeholder="Objetivo">
+									<span ng-bind="$select.selected"></span>
+								</ui-select-match>
+								<ui-select-choices repeat="article in (homeCtrl.searcharticles_target | filter: $select.search)" refresh="homeCtrl.search($select.search, 'input_target')" refresh-delay="500">
+									<span ng-bind="article"></span>
+								</ui-select-choices>
+							</ui-select>
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-lg btn-default" ng-click="homeCtrl.random('input_target')">
 									<i class="fa fa-random"></i>
