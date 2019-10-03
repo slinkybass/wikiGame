@@ -18,17 +18,35 @@
         </div>
 		
         <div class="container" style="margin-top: 100px;" ng-show="!homeCtrl.article_begin && !homeCtrl.article_target">
-            <div class="row">
-				<div class="col-md-6">
-					<input type="text" class="form-control input-lg" ng-model="homeCtrl.input_begin" placeholder="Origen" />
+			<form name="form">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group">
+							<input type="text" class="form-control input-lg" ng-model="homeCtrl.input_begin" placeholder="Origen" required />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-lg btn-default" ng-click="homeCtrl.random('input_begin')">
+									<i class="fa fa-random"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group">
+							<input type="text" class="form-control input-lg" ng-model="homeCtrl.input_target" placeholder="Objetivo" required />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-lg btn-default" ng-click="homeCtrl.random('input_target')">
+									<i class="fa fa-random"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="col-md-12" style="margin-top: 50px;">
+						<button type="button" class="btn btn-lg btn-block btn-success" ng-click="homeCtrl.begin()" ng-disabled="form.$invalid">
+							Empezar
+						</button>
+					</div>
 				</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control input-lg" ng-model="homeCtrl.input_target" placeholder="Objetivo" />
-				</div>
-				<div class="col-md-12" style="margin-top: 50px;">
-					<input type="button" class="btn btn-lg btn-block btn-success" ng-click="homeCtrl.begin()" value="Empezar" />
-				</div>
-			</div>
+			</form>
         </div>
 		
     </content>

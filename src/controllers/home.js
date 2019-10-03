@@ -4,15 +4,31 @@ angular.module('app')
         function ($scope, $sce, wikiAPI, getErrorAPI, SweetAlert, toaster, ngDialog) {
             var vm = this;
 
-            vm.begin = function () {
-				vm.article_begin = vm.input_begin;
-				vm.article_target = vm.input_target;
-				document.loadSection(vm.article_begin);
-			}
 			vm.reset = function () {
 				vm.article_begin = null;
 				vm.article_target = null;
 				vm.breadcrumb = [];
+			}
+			vm.random = function (id) {
+				wikiAPI.get({
+                    format: 'json',
+                    action: 'query',
+                    generator: 'random',
+                    grnnamespace: 0
+                }).then(function (data) {
+                    var title = data.query.pages;
+                    title = title[Object.keys(title)[0]].title;
+					if (id == 'input_begin') {
+						vm.input_begin = title;
+					} else if (id == 'input_target') {
+						vm.input_target = title;
+					}
+				});
+			}
+			vm.begin = function () {
+				vm.article_begin = vm.input_begin;
+				vm.article_target = vm.input_target;
+				document.loadSection(vm.article_begin);
 			}
 			
             document.loadSection = function (page) {
@@ -69,26 +85,31 @@ angular.module('app')
 						
                         //Replace links
                         $("a").each(function(index) {
-							var link = $(this).attr('href');
-							//Is External URL?
-							if(link.search('http:') > -1 || link.search('https:') > -1) {
+							//Is Link?
+							if (!$(this).attr('href')) {
 								$(this).replaceWith($(this).html());
 							} else {
-								//Is Not Article?
-								if(link.search('/wiki/') == -1) {
+								var link = $(this).attr('href');
+								//Is External URL?
+								if(link.search('http:') > -1 || link.search('https:') > -1) {
 									$(this).replaceWith($(this).html());
 								} else {
-									var article = link.replace('/wiki/', '');
-									//Is Not Regular Article?
-									if(article.search('Archivo:') > -1 || article.search('Anexo:') > -1 || article.search('Especial:') > -1) {
+									//Is Not Article?
+									if(link.search('/wiki/') == -1) {
 										$(this).replaceWith($(this).html());
 									} else {
-										//Is Anchor?
-										if(article.search('#') > -1) {
-											article = article.split("#")[0];
+										var article = link.replace('/wiki/', '');
+										//Is Not Regular Article?
+										if(article.search('Archivo:') > -1 || article.search('Especial:') > -1) {
+											$(this).replaceWith($(this).html());
+										} else {
+											//Is Anchor?
+											if(article.search('#') > -1) {
+												article = article.split("#")[0];
+											}
+											$(this).attr('href', '#');
+											$(this).attr('onclick', 'loadSection("' + article + '")');
 										}
-										$(this).attr('href', '#');
-										$(this).attr('onclick', 'loadSection("' + article + '")');
 									}
 								}
 							}

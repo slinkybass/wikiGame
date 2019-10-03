@@ -12,6 +12,7 @@ angular.module('app')
             $stateProvider
                 .state('home', {
                     url: "/",
+					cache: false,
                     templateUrl: "src/templates/home.tmpl.html",
                     controller: 'HomeController',
                     controllerAs: 'homeCtrl',
