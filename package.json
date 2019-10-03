@@ -10,7 +10,6 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
     "ng-dialog": "^1.4.0",
-    "oclazyload": "^1.1.0",
-    "ui-select": "^0.19.8"
+    "oclazyload": "^1.1.0"
   }
 }
