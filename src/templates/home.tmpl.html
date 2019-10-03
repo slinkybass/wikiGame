@@ -6,24 +6,31 @@
                 <span ng-bind="breadcrumb"></span>
             </li>
         </ul>
-        <span class="steps" ng-show="homeCtrl.article_begin && homeCtrl.article_target" ng-bind="homeCtrl.breadcrumb.length-1"></span>
-        <span class="target" ng-show="homeCtrl.article_begin && homeCtrl.article_target" ng-bind="homeCtrl.article_target"></span>
+        <div class="target" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
+			<span ng-bind="homeCtrl.article_target"></span>
+			<a href="https://es.wikipedia.org/wiki/{{ homeCtrl.article_target }}" target="_blank">
+				<i class="fa fa-external-link"></i>
+			</a>
+		</div>
+        <div class="steps" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
+			<span ng-bind="homeCtrl.breadcrumb.length-1"></span>
+		</div>
     </header>
 
     <content id="content">
 	
-        <div class="container" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
-            <h1 id="firstHeading" class="firstHeading" ng-bind="homeCtrl.actualPage"></h1>
-            <div ng-bind-html="homeCtrl.text"></div>
+        <div class="container home" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
+            <h1 id="firstHeading" class="firstHeading" ng-bind="homeCtrl.actualPageTitle"></h1>
+            <div ng-bind-html="homeCtrl.actualPageContent"></div>
         </div>
 		
-        <div class="container" style="margin-top: 100px;" ng-show="!homeCtrl.article_begin && !homeCtrl.article_target">
+        <div class="container game" style="margin-top: 100px;" ng-show="!homeCtrl.article_begin && !homeCtrl.article_target">
 			<form name="form">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<div class="input-group">
 							<ui-select ng-model="homeCtrl.input_begin" ng-required="true" theme="bootstrap">
-								<ui-select-match allow-clear="true" placeholder="Origen">
+								<ui-select-match allow-clear="true" placeholder="Source">
 									<span ng-bind="$select.selected"></span>
 								</ui-select-match>
 								<ui-select-choices repeat="article in (homeCtrl.searcharticles_begin | filter: $select.search)" refresh="homeCtrl.search($select.search, 'input_begin')" refresh-delay="500">
@@ -37,10 +44,10 @@
 							</span>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-12" style="margin-top: 25px;">
 						<div class="input-group">
 							<ui-select ng-model="homeCtrl.input_target" ng-required="true">
-								<ui-select-match allow-clear="true" placeholder="Objetivo">
+								<ui-select-match allow-clear="true" placeholder="Target">
 									<span ng-bind="$select.selected"></span>
 								</ui-select-match>
 								<ui-select-choices repeat="article in (homeCtrl.searcharticles_target | filter: $select.search)" refresh="homeCtrl.search($select.search, 'input_target')" refresh-delay="500">
@@ -56,7 +63,7 @@
 					</div>
 					<div class="col-md-12" style="margin-top: 50px;">
 						<button type="button" class="btn btn-lg btn-block btn-success" ng-click="homeCtrl.begin()" ng-disabled="form.$invalid">
-							Empezar
+							Start!
 						</button>
 					</div>
 				</div>

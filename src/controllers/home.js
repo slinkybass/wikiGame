@@ -5,9 +5,20 @@ angular.module('app')
             var vm = this;
 
 			vm.reset = function () {
+				vm.input_begin = null;
+				vm.input_target = null;
+				
+				vm.searcharticles_begin = [];
+				vm.searcharticles_target = [];
+				
 				vm.article_begin = null;
 				vm.article_target = null;
+				
 				vm.breadcrumb = [];
+				
+				vm.actualPage = null;
+				vm.actualPageTitle = null;
+				vm.actualPageContent = null;
 			}
 			vm.random = function (id) {
 				wikiAPI.get({
@@ -26,8 +37,6 @@ angular.module('app')
 				});
 			}
 			
-            vm.searcharticles_begin = [];
-            vm.searcharticles_target = [];
             vm.search = function (str, id) {
                 if (str.length >= 1) {
 					return wikiAPI.get({
@@ -49,46 +58,47 @@ angular.module('app')
             }
 			
 			vm.begin = function () {
-				vm.article_begin = vm.input_begin;
-				vm.article_target = vm.input_target;
-				document.loadSection(vm.article_begin);
+				if (vm.input_begin != vm.input_target) {
+					vm.article_begin = vm.input_begin;
+					vm.article_target = vm.input_target;
+					document.loadSection(vm.article_begin);
+				} else {
+					toaster.pop('error', "The fields must be different!", "You cannot play if both fields are the same article");
+				}
 			}
 			
             document.loadSection = function (page) {
-				page = decodeURIComponent(page);
-					
-				console.log(page + ' - ' + vm.article_target);
-				if (page == vm.article_target) {
-					ngDialog.open({
-						template: 'success',
-						className: 'ngdialog-theme-default',
-						controller: 'DialogController',
-						controllerAs: 'dialogCtrl',
-						resolve: {
-							breadcrumb: function () {
-								return vm.breadcrumb;
-							}
-						},
-						preCloseCallback: function(){
-							vm.reset();
-						}
-					});
-				}
-					
+				vm.actualPage = decodeURIComponent(page);
                 wikiAPI.get({
                     format: 'json',
                     action: 'parse',
                     prop: 'text',
-                    page: page
+                    page: vm.actualPage
                 }).then(function (data) {
                     window.scrollTo(0, 0);
 
                     var text = data.parse.text;
                     text = text[Object.keys(text)[0]];
 
-                    vm.text = $sce.trustAsHtml(text);
-                    vm.actualPage = data.parse.title;
-                    vm.breadcrumb.push(vm.actualPage);
+                    vm.actualPageContent = $sce.trustAsHtml(text);
+                    vm.actualPageTitle = data.parse.title;
+                    vm.breadcrumb.push(vm.actualPageTitle);
+					
+					if (vm.actualPageTitle == vm.article_target) {
+						ngDialog.open({
+							template: 'success',
+							className: 'ngdialog-theme-default',
+							controller: 'DialogController',
+							controllerAs: 'dialogCtrl',
+							resolve: {
+								breadcrumb: function () {
+									return vm.breadcrumb;
+								}
+							}
+						}).closePromise.then(function (data) {
+							vm.reset();
+						});
+					}
 
                     setTimeout(function () {
                         //Remove sups
@@ -107,7 +117,7 @@ angular.module('app')
 						$('.mw-authority-control').remove();
 						
                         //Replace links
-                        $("a").each(function(index) {
+                        $("#content .container.game a").each(function(index) {
 							//Is Link?
 							if (!$(this).attr('href')) {
 								$(this).replaceWith($(this).html());

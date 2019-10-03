@@ -82,16 +82,13 @@ section.home content .ui-select-bootstrap > .ui-select-match > .btn:hover,
 section.home content .ui-select-bootstrap > .ui-select-match > .btn:active,
 section.home content .ui-select-bootstrap > .ui-select-match > .btn:focus {
     color: #333;
-	background-color: #fff;
-	border-color: #ccc;
-}
-section.home content .ui-select-bootstrap > .ui-select-match > .btn:hover,
-section.home content .ui-select-bootstrap > .ui-select-match > .btn:active {
+	background-color: #FFF;
+	border-color: #CCC;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
 section.home content .ui-select-bootstrap > .ui-select-match > .btn:focus {
-    border-color: #66afe9;
+    border-color: #66AfE9;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
@@ -104,4 +101,14 @@ section.home content .ui-select-bootstrap .ui-select-toggle > a.btn {
     padding: 0;
     margin: -2px 0px 0px 0px !important;
 	color: #000;
+}
+section.home content .ui-select-bootstrap .ui-select-choices-row > span {
+    padding: 3px 20px;
+    font-size: 18px;
+}
+section.home content .ui-select-bootstrap .ui-select-choices-row.active > span {
+    background-color: #333;
+}
+section.home content h1#firstHeading {
+	border-bottom: 1px solid #333;
 }
