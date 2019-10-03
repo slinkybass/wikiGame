@@ -1,20 +1,42 @@
 <section class="home">
 
     <header>
-        <ul class="bread">
+        <ul class="bread" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
             <li ng-repeat="breadcrumb in homeCtrl.breadcrumb">
                 <span ng-bind="breadcrumb"></span>
             </li>
         </ul>
-        <span class="steps" ng-bind="homeCtrl.breadcrumb.length-1"></span>
-        <span class="target" ng-bind="homeCtrl.article_target"></span>
+        <span class="steps" ng-show="homeCtrl.article_begin && homeCtrl.article_target" ng-bind="homeCtrl.breadcrumb.length-1"></span>
+        <span class="target" ng-show="homeCtrl.article_begin && homeCtrl.article_target" ng-bind="homeCtrl.article_target"></span>
     </header>
 
     <content id="content">
-        <div class="container">
+	
+        <div class="container" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
             <h1 id="firstHeading" class="firstHeading" ng-bind="homeCtrl.actualPage"></h1>
             <div ng-bind-html="homeCtrl.text"></div>
         </div>
+		
+        <div class="container" style="margin-top: 100px;" ng-show="!homeCtrl.article_begin && !homeCtrl.article_target">
+            <div class="row">
+				<div class="col-md-6">
+					<input type="text" class="form-control input-lg" ng-model="homeCtrl.input_begin" placeholder="Origen" />
+				</div>
+				<div class="col-md-6">
+					<input type="text" class="form-control input-lg" ng-model="homeCtrl.input_target" placeholder="Objetivo" />
+				</div>
+				<div class="col-md-12" style="margin-top: 50px;">
+					<input type="button" class="btn btn-lg btn-block btn-success" ng-click="homeCtrl.begin()" value="Empezar" />
+				</div>
+			</div>
+        </div>
+		
     </content>
+
+	<script type="text/ng-template" id="success">
+		<h1 class="text-center">Success!</h1>
+		<p class="text-center">Congratulations</p>
+		<p class="text-center" ng-bind="dialogCtrl.breadcrumb.length-1"></p>
+	</script>
 
 </section>

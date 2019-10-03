@@ -7,6 +7,7 @@ angular.module('app')
     {
         name: 'home',
         files: [
-            'src/controllers/home.js'
+            'src/controllers/home.js',
+            'src/controllers/dialog.js'
         ]
     }]);

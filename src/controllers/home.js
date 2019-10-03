@@ -4,12 +4,43 @@ angular.module('app')
         function ($scope, $sce, wikiAPI, getErrorAPI, SweetAlert, toaster, ngDialog) {
             var vm = this;
 
+            vm.begin = function () {
+				vm.article_begin = vm.input_begin;
+				vm.article_target = vm.input_target;
+				document.loadSection(vm.article_begin);
+			}
+			vm.reset = function () {
+				vm.article_begin = null;
+				vm.article_target = null;
+				vm.breadcrumb = [];
+			}
+			
             document.loadSection = function (page) {
+				page = decodeURIComponent(page);
+					
+				console.log(page + ' - ' + vm.article_target);
+				if (page == vm.article_target) {
+					ngDialog.open({
+						template: 'success',
+						className: 'ngdialog-theme-default',
+						controller: 'DialogController',
+						controllerAs: 'dialogCtrl',
+						resolve: {
+							breadcrumb: function () {
+								return vm.breadcrumb;
+							}
+						},
+						preCloseCallback: function(){
+							vm.reset();
+						}
+					});
+				}
+					
                 wikiAPI.get({
                     format: 'json',
                     action: 'parse',
                     prop: 'text',
-                    page: decodeURIComponent(page)
+                    page: page
                 }).then(function (data) {
                     window.scrollTo(0, 0);
 
@@ -64,20 +95,9 @@ angular.module('app')
 						});
 						
                     }, 1);
-					
-					if (page == vm.article_target) {
-						ngDialog.open({
-							template: 'success',
-							className: 'ngdialog-theme-default'
-						});
-					}
                 });
             }
 			
-			vm.article_begin = 'Pizza';
-			vm.article_target = 'Campania';
-			
-            vm.breadcrumb = [];
-            document.loadSection(vm.article_begin);
+			vm.reset();
         }
     ]);
