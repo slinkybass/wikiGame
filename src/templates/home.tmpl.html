@@ -19,12 +19,12 @@
 
     <content id="content">
 	
-        <div class="container home" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
+        <div class="container game" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
             <h1 id="firstHeading" class="firstHeading" ng-bind="homeCtrl.actualPageTitle"></h1>
             <div ng-bind-html="homeCtrl.actualPageContent"></div>
         </div>
 		
-        <div class="container game" style="margin-top: 100px;" ng-show="!homeCtrl.article_begin && !homeCtrl.article_target">
+        <div class="container home" style="margin-top: 100px;" ng-show="!homeCtrl.article_begin && !homeCtrl.article_target">
 			<form name="form">
 				<div class="row">
 					<div class="col-md-12">
