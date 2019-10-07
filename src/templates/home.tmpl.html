@@ -1,17 +1,13 @@
 <section class="home">
 
     <header>
-        <ul class="bread" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
-            <li ng-repeat="breadcrumb in homeCtrl.breadcrumb">
-                <span ng-bind="breadcrumb"></span>
-            </li>
-        </ul>
-        <div class="target" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
+        <div class="bread" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
+            <span ng-bind="homeCtrl.article_begin"></span>
 			<span ng-bind="homeCtrl.article_target"></span>
 			<a href="https://es.wikipedia.org/wiki/{{ homeCtrl.article_target }}" target="_blank">
 				<i class="fa fa-external-link"></i>
 			</a>
-		</div>
+        </div>
         <div class="steps" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
 			<span ng-bind="homeCtrl.steps"></span>
 		</div>

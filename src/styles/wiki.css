@@ -18,19 +18,22 @@ section.home header {
     background-color: #333333;
     color: #FFFFFF;
 }
-section.home header ul.bread {
-    position: fixed;
-    left: 25px;
-    top: 35px;
-    margin: 0;
-    padding: 0;
+section.home header div.bread {
+    text-align: center;
     font-size: 18px;
+	margin: 37px 0;
 }
-section.home header ul.bread li {
+section.home header div.bread span {
     display: inline;
 }
-section.home header ul.bread li+li:before {
-    content: " >";
+section.home header div.bread span+span:before {
+    content: " > ";
+	margin: 0 15px;
+}
+section.home header div.bread a {
+    color: #FFFFFF;
+	font-size: 14px;
+	margin-left: 5px;
 }
 section.home header .steps {
     position: fixed;
@@ -43,18 +46,6 @@ section.home header .steps {
     color: #FFFFFF;
     text-align: center;
     font-size: 35px;
-}
-section.home header .target {
-    position: fixed;
-    left: 25px;
-    top: 75px;
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-}
-section.home header .target::before {
-	content: 'Objetivo: ';
-	color: #BBB;
 }
 section.home content {
     position: absolute;
