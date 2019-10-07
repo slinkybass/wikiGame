@@ -15,6 +15,7 @@ angular.module('app')
 				vm.article_target = null;
 				
 				vm.breadcrumb = [];
+				vm.steps = 0;
 				
 				vm.actualPage = null;
 				vm.actualPageTitle = null;
@@ -82,7 +83,10 @@ angular.module('app')
 
                     vm.actualPageContent = $sce.trustAsHtml(text);
                     vm.actualPageTitle = data.parse.title;
-                    vm.breadcrumb.push(vm.actualPageTitle);
+					vm.breadcrumb.push(vm.actualPageTitle);
+					if (vm.actualPageTitle.indexOf("(desambiguación)") == -1) {
+						vm.steps++;
+					}
 					
 					if (vm.actualPageTitle == vm.article_target) {
 						ngDialog.open({
