@@ -8,7 +8,7 @@
 				<i class="fa fa-external-link"></i>
 			</a>
         </div>
-        <div class="steps" ng-show="homeCtrl.article_begin && homeCtrl.article_target">
+        <div class="steps" ng-show="homeCtrl.article_begin && homeCtrl.article_target && homeCtrl.steps > 0">
 			<span ng-bind="homeCtrl.steps"></span>
 		</div>
     </header>
@@ -70,8 +70,7 @@
 
 	<script type="text/ng-template" id="success">
 		<h1 class="text-center">Success!</h1>
-		<p class="text-center">Congratulations</p>
-		<p class="text-center" ng-bind="dialogCtrl.breadcrumb.length-1"></p>
+		<p class="text-center" ng-bind="breadcrumb" ng-repeat="breadcrumb in dialogCtrl.breadcrumb"></p>
 	</script>
 
 </section>

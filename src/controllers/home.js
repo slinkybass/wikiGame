@@ -15,7 +15,7 @@ angular.module('app')
 				vm.article_target = null;
 				
 				vm.breadcrumb = [];
-				vm.steps = 0;
+				vm.steps = -1;
 				
 				vm.actualPage = null;
 				vm.actualPageTitle = null;
