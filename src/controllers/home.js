@@ -137,7 +137,12 @@ angular.module('app')
 									} else {
 										var article = link.replace('/wiki/', '');
 										//Is Not Regular Article?
-										if(article.search('Archivo:') > -1 || article.search('Especial:') > -1) {
+										if(
+										article.search('Archivo:') > -1 ||
+										article.search('Especial:') > -1 ||
+										article.search('Ayuda:') > -1 ||
+										article.search('Wikipedia:') > -1
+										) {
 											$(this).replaceWith($(this).html());
 										} else {
 											//Is Anchor?
