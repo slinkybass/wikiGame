@@ -8,7 +8,7 @@
     "angularjs-toaster": "^2.2.0",
     "bootstrap": "3.*",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-dialog": "^1.4.0",
     "oclazyload": "^1.1.0",
     "ui-select": "^0.19.8"
